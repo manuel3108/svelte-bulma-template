@@ -1,91 +1,47 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# svelte bulma template
+This is a modified [svelte template](https://github.com/sveltejs/template), to include the bulma css, which is installed through npm.
 
----
+## how to use
+There are three options:
+- use the github template feature, to create a new repository based on this codebase
+- clone this repository and apply any changes you want+
+- follow the steps in [setup](URL_NOT_NOW_YET)
 
-# svelte app
-
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
+## setup
+First install bulma and a rollup helper plugin:
+```
+npm i rollup-plugin-css-only bulma
 ```
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started
-
-Install the dependencies...
-
-```bash
-cd svelte-app
-npm install
-```
-
-...then start [Rollup](https://rollupjs.org):
-
-```bash
-npm run dev
-```
-
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
+Go to your `rollup.config.js`
+and apply the following changes:
 ```js
-"start": "sirv public --single"
+import svelte from 'rollup-plugin-svelte';
+// ....
+import css from "rollup-plugin-css-only";
+
+export default {
+	plugins: [
+		css({ output: "public/build/extra.css" }),       
+        // all other plugins
+	]
+};
 ```
 
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
+Go to your `App.svelte` and import the following:
+```js
+import 'bulma/css/bulma.css'
 ```
 
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
+Go to your `public/index.html` and add this somewhere in your `head`:
+```html
+<link rel="stylesheet" href="/build/extra.css" />
 ```
 
-### With [surge](https://surge.sh/)
+And ther you go!
 
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
+You should now be able to use something like:
+```html
+<button class="button">Button</button>
 ```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+Now you should see a nice looking [Bulma Button](https://bulma.io/documentation/elements/button/)
