@@ -5,7 +5,7 @@ This is a modified [svelte template](https://github.com/sveltejs/template), to i
 There are three options:
 - use the github template feature, to create a new repository based on this codebase
 - clone this repository and apply any changes you want+
-- follow the steps in [setup](URL_NOT_NOW_YET)
+- follow the steps in [setup](https://github.com/manuel3108/svelte-bulma-template#setup)
 
 ## setup
 First install bulma and a rollup helper plugin:
